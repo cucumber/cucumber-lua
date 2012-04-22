@@ -6,7 +6,7 @@ A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) imple
 
 Install using luarocks:
 
-	luarocks build https://raw.github.com/featurist/cucumber-lua/master/cucumberlua-0.0-1.rockspec
+	luarocks build https://raw.github.com/cucumber/cucumber-lua/master/cucumber-lua-0.0-1.rockspec
 
 Add a .wire file telling cucumber that Lua is listening:
 
