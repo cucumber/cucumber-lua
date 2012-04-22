@@ -10,7 +10,7 @@ description = {
     executes steps defined in Lua
   ]],
   homepage = "http://github.com/cucumber/cucumber-lua",
-  maintainer = "Featurist <enquiries@featurist.co.uk>",
+  maintainer = "Joshski, Featurist <josh@featurist.co.uk>",
   license = "MIT"
 }
 dependencies = {
