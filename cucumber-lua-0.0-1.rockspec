@@ -1,4 +1,4 @@
-package = "CucumberLua"
+package = "Cucumber-Lua"
 version = "0.0-1"
 source = {
   url = "git://github.com/cucumber/cucumber-lua.git"
