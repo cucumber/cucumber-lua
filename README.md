@@ -2,20 +2,24 @@
 
 A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) implementation for [cucumber](http://cucumbers.info/) that executes steps defined in [Lua](http://www.lua.org/)
 
-#### Usage
+#### Installation
 
-Install using luarocks:
+1. Install Lua 5.1 (The Lua package management system, luarocks, is incompatible with Lua 5.2 at the time of writing)
+
+2. Install cucumber-lua using luarocks:
 
 	luarocks build https://raw.github.com/cucumber/cucumber-lua/master/cucumber-lua-0.0-1.rockspec
 
-Add a .wire file telling cucumber that Lua is listening:
+3. Add a .wire file telling cucumber that Lua is listening:
 
-###### /features/step_definitions/lua-cucumber.wire
+###### /features/step_definitions/cucumber-lua.wire
 
 	host: 0.0.0.0
 	port: 9666
 
-Run the CucumberLua server:
+#### Usage
+
+Run the cucumber-lua server:
 
 	cucumber-lua
 
@@ -24,6 +28,8 @@ Then run cucumber in another terminal:
 	cucumber
 
 #### Lua Step Definitions
+
+cucumber-lua expects you to define a single file for step definitions (features/step_definitions/steps.lua). If you need anything more than a single file, use lua modules and require them from your main steps file (that means we don't need luafilesystem)
 
 ###### /features/step_definitions/steps.lua
 
@@ -45,7 +51,11 @@ Then run cucumber in another terminal:
 		assert(Calculator.result == tonumber(number),
 			   "Expected " .. number .. ", was " .. Calculator.result)
 	end)
+	
+	Then("Something not yet implemented", function ()
+		Pending("It's not ready yet")
+	end)
 
-#### Running the CucumberLua specs
+#### Running the Cucumber-Lua specs
 
 	lua spec/runner.lua
