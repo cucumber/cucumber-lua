@@ -4,6 +4,7 @@ local socket = require("socket")
 local CucumberLua = {
   step_definitions = {},
   before_hooks = {},
+  after_hooks = {},
   pending_message = "PENDING"
 }
 local World = {}
@@ -33,7 +34,17 @@ function CucumberLua:begin_scenario(args)
   end
   return { "success" }
 end
-  
+
+function CucumberLua:end_scenario(args)
+  for i,hook in ipairs(self.after_hooks) do
+    local ok, err = pcall(hook)
+    if not ok then
+        return { "fail", { message = err, exception = err } }
+    end
+  end
+  return { "success" }
+end
+
 function CucumberLua:invoke(args)
   func = self.step_definitions[args["id"]]
   local ok, err = pcall(func, (unpack or table.unpack)(args["args"]))
@@ -124,10 +135,15 @@ local Before = function(func)
   table.insert(CucumberLua.before_hooks, func)
 end
 
+local After = function(func)
+  table.insert(CucumberLua.after_hooks, func)
+end
+
 _G["Given"]    = DefineStep
 _G["When"]     = DefineStep
 _G["Then"]     = DefineStep
 _G["Before"]   = Before
+_G["After"]    = After
 _G["World"]    = World
 _G["Pending"]  = Pending
 
