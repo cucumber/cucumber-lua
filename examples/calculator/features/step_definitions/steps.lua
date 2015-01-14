@@ -2,6 +2,7 @@ Calculator = require("calculator")
 
 Before(function()
   Calculator:Reset()
+  print(nil .. "asdas")
 end)
 
 Given("I have entered (%d+) into the calculator", function (number)
