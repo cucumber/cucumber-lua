@@ -28,7 +28,10 @@ end
 function CucumberLua:begin_scenario(args)
   _G["World"] = {}
   for i,hook in ipairs(self.before_hooks) do
-    hook()
+    local ok, err = pcall(hook)
+    if not ok then
+        return { "fail", { message = err, exception = err } }
+    end
   end
   return { "success" }
 end
