@@ -84,7 +84,7 @@ end
 function CucumberLua:RespondToWireRequest (request)
   local command = request[1]
   local args = request[2]
-  response = { "success" }
+  local response = { "success" }
   if self[command] then
     response = self[command](self, args)
   end
