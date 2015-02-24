@@ -112,7 +112,6 @@ function CucumberLua:StartListening ()
   local ip, port = sock:getsockname()
   assert(ip, port)
   print("Waiting for cucumber on " .. ip .. ":" .. port .. " (Ctrl+C to quit)")
-  self:ReloadSteps()
   self:Listen(sock)
 end
 
