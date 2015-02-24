@@ -6,19 +6,19 @@ local failures = {}
 local descriptions = {
   size = 0,
   items = {},
- 
+
   push = function (s, item)
     s.size = s.size + 1
     s.items[s.size] = item
   end,
- 
+
   pop = function (s)
     if (s.size <= 0) then return nil end
     local item = s.items[s.size]
     s.size = s.size - 1
     return item
   end,
- 
+
   concatenate = function (s)
     local str = ""
     for i = 1, s.size do
@@ -61,21 +61,21 @@ function recordFailure(name, err)
                 " " ..
                 name ..
                 ":\n  - " ..
-                (err.message or err or "") )  
+                (err.message or err or "") )
 end
 
 function traceback()
-  for line in string.gmatch(debug.traceback(), "[^\n]+in function \<[^\n]+") do
-    return string.gsub(string.gsub(line, ": in function \<.+\>", ""), "%s+", "")
+  for line in string.gmatch(debug.traceback(), "[^\n]+in function <[^\n]+") do
+    return string.gsub(string.gsub(line, ": in function <.+>", ""), "%s+", "")
   end
 end
 
 function red( str )
-  return '\27[31m' .. str .. '\27[0m' 
+  return '\27[31m' .. str .. '\27[0m'
 end
 
 function green( str )
-  return '\27[32m' .. str .. '\27[0m' 
+  return '\27[32m' .. str .. '\27[0m'
 end
 
 function equal( a, b )
