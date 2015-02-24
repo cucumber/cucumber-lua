@@ -4,11 +4,11 @@ A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) imple
 
 #### Installation
 
-1. Install Lua 5.1 (The Lua package management system, luarocks, is incompatible with Lua 5.2 at the time of writing)
+1. Install Lua 5.2
 
 2. Install cucumber-lua using luarocks:
 
-	luarocks build https://raw.github.com/cucumber/cucumber-lua/master/cucumber-lua-0.0-1.rockspec
+	luarocks build https://raw.github.com/cucumber/cucumber-lua/master/cucumber-lua-0.0-2.rockspec
 
 3. Add a .wire file telling cucumber that Lua is listening:
 
@@ -34,24 +34,24 @@ cucumber-lua expects you to define a single file for step definitions (features/
 ###### /features/step_definitions/steps.lua
 
 	Calculator = require("calculator")
-	
+
 	Before(function()
 		Calculator:Reset()
 	end)
-	
+
 	Given("I have entered (%d+) into the calculator", function (number)
 		Calculator:Enter(number)
 	end)
-	
+
 	When("I press add", function ()
 		Calculator:Add()
 	end)
-	
+
 	Then("the result should be (%d+) on the screen", function (number)
 		assert(Calculator.result == tonumber(number),
 			   "Expected " .. number .. ", was " .. Calculator.result)
 	end)
-	
+
 	Then("Something not yet implemented", function ()
 		Pending("It's not ready yet")
 	end)

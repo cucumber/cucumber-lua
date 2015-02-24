@@ -1,4 +1,4 @@
-Given /^there is no step matching "([^"]*)"$/ do |pattern|
+Given /^there is no step matching "(.*)"$/ do |pattern|
   check_file_content lua_step_definitions_path, pattern, false
 end
 
@@ -10,7 +10,9 @@ Then /^the server should respond as follows:$/ do |table|
   connect_to_wire_server do |socket|
     table.hashes.each do |hash|
       socket.puts hash["request"]
-      socket.gets.strip.should == hash["response"].gsub("\n", "\\n")
+      expected_json = JSON.parse(hash["response"].gsub("\n", "\\n"))
+      actual_json = JSON.parse(socket.gets.strip)
+      expect(actual_json).to eq(expected_json)
     end
   end
 end

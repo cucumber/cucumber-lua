@@ -1,5 +1,5 @@
 package = "Cucumber-Lua"
-version = "0.0-1"
+version = "0.0-2"
 source = {
   url = "git://github.com/cucumber/cucumber-lua.git"
 }
@@ -10,7 +10,7 @@ description = {
     executes steps defined in Lua
   ]],
   homepage = "http://github.com/cucumber/cucumber-lua",
-  maintainer = "Joshski, Featurist <josh@featurist.co.uk>",
+  maintainer = "Josh Chisholm, Featurist <josh@featurist.co.uk>",
   license = "MIT"
 }
 dependencies = {
