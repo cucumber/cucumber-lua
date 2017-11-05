@@ -76,7 +76,7 @@ function CucumberLua:StepMatch(text, pattern)
   return {
     id = pattern,
     args = self:FindArgs(text, pattern),
-    source = pattern,
+    source = "lua." .. pattern .. ":0",
     regexp = pattern
   }
 end
