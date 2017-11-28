@@ -1,5 +1,5 @@
 package = "Cucumber-Lua"
-version = "0.0-2"
+version = "0.0-3"
 source = {
   url = "git://github.com/cucumber/cucumber-lua.git"
 }
@@ -14,7 +14,7 @@ description = {
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1",
+  "lua >= 5.3",
   "luasocket >= 2.0",
   "luajson >= 1.3"
 }
