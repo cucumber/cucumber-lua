@@ -19,7 +19,8 @@ install:
 script:
   - lua spec/runner.lua
 
-allow_failures:
-  - env: LUA="lua 5.3"
-  - env: LUA="luajit 2.0"
-  - env: LUA="luajit 2.1"
+matrix:
+  allow_failures:
+    - env: LUA="lua 5.3"
+    - env: LUA="luajit 2.0"
+    - env: LUA="luajit 2.1"
