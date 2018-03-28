@@ -1,0 +1,26 @@
+language: python 
+sudo: false
+
+env:
+  - LUA="lua 5.2"
+  - LUA="lua 5.3"
+  - LUA="luajit 2.0"
+  - LUA="luajit 2.1"
+
+before_install:
+  - pip install hererocks
+  - hererocks env --$LUA -rlatest    # Use latest LuaRocks, install into 'env' directory.
+  - source env/bin/activate          # Add directory with all installed binaries to PATH.
+  - luarocks install busted          # We don't use busted, but it installs all of our dependencies. This should be tidied up when someone gets a chance.
+
+install:
+  - luarocks make
+
+script:
+  - lua spec/runner.lua
+
+matrix:
+  allow_failures:
+    - env: LUA="lua 5.3"
+    - env: LUA="luajit 2.0"
+    - env: LUA="luajit 2.1"
