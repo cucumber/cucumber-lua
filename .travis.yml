@@ -1,0 +1,18 @@
+language: python 
+sudo: false
+
+env:
+  - LUA="lua 5.2"
+  
+
+before_install:
+  - pip install hererocks
+  - hererocks env --$LUA -rlatest    # Use latest LuaRocks, install into 'env' directory.
+  - source env/bin/activate          # Add directory with all installed binaries to PATH.
+  - luarocks install busted
+
+install:
+  - luarocks make
+
+script:
+  - lua spec/runner.lua
