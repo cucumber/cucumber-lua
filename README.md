@@ -1,4 +1,5 @@
 # Cucumber-Lua
+[![Build Status](https://travis-ci.org/cucumber/cucumber-lua.svg?branch=master)](https://travis-ci.org/cucumber/cucumber-lua)
 
 A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) implementation for [cucumber](http://cucumbers.info/) that executes steps defined in [Lua](http://www.lua.org/)
 
