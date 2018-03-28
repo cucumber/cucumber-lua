@@ -11,6 +11,7 @@ before_install:
   - pip install hererocks
   - hererocks env --$LUA -rlatest    # Use latest LuaRocks, install into 'env' directory.
   - source env/bin/activate          # Add directory with all installed binaries to PATH.
+  - luarocks install busted          # We don't use busted, but it installs all of our dependencies. This should be tidied up when someone gets a chance.
 
 install:
   - luarocks make
