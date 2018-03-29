@@ -1,6 +1,4 @@
-module("cucumber", package.seeall)
-
-require("json")
+local json = require("json")
 local socket = require("socket")
 
 local CucumberLua = {
@@ -38,7 +36,7 @@ end
   
 function CucumberLua:invoke(args)
   func = self.step_definitions[args["id"]]
-  local ok, err = pcall(func, unpack(args["args"]))
+  local ok, err = pcall(func, (unpack or table.unpack)(args["args"]))
   if ok then
     return { "success" }
   else
