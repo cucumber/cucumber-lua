@@ -1,7 +1,7 @@
 # Cucumber-Lua
 [![Build Status](https://travis-ci.org/cucumber/cucumber-lua.svg?branch=master)](https://travis-ci.org/cucumber/cucumber-lua)
 
-A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) implementation for [cucumber](http://cucumbers.info/) that executes steps defined in [Lua](http://www.lua.org/)
+A [wire protocol](https://github.com/cucumber/cucumber-ruby-wire) server for [cucumber-ruby](http://github.com/cucumber/cucumber-ruby) that executes steps defined in [Lua](http://www.lua.org/)
 
 #### Installation
 
@@ -13,7 +13,26 @@ A [wire protocol](https://github.com/cucumber/cucumber/wiki/Wire-Protocol) imple
 luarocks build https://raw.github.com/cucumber/cucumber-lua/master/cucumber-lua-0.0-2.rockspec
 ```
 
-3. Add a .wire file telling cucumber that Lua is listening:
+3. Install [Ruby]([url](https://www.ruby-lang.org/en/documentation/installation/)), [cucumber-ruby]([url](http://github.com/cucumber/cucumber-ruby)) and the [wire protocol gem]([url](https://github.com/cucumber/cucumber-ruby-wire)).
+
+Create a `Gemfile`
+
+```
+source 'https://rubygems.org'
+
+gem "cucumber"
+gem "cucumber-wire"
+```
+
+Then ask [Bundler]([url](https://bundler.io/)) to install the gems:
+
+    bundle install
+    
+Add a file to load the wire protocol plugin:
+
+    echo "require 'cucumber/wire'" > features/support/wire.rb
+
+5. Add a .wire file telling cucumber that Lua is listening:
 
 ###### /features/step_definitions/cucumber-lua.wire
 
@@ -33,7 +52,7 @@ cucumber-lua
 Then run cucumber in another terminal:
 
 ```
-cucumber
+bundle exec cucumber
 ```
 
 #### Lua Step Definitions
