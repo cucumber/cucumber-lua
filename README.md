@@ -57,7 +57,18 @@ bundle exec cucumber
 
 #### Lua Step Definitions
 
-cucumber-lua expects you to define a single file for step definitions (features/step_definitions/steps.lua). If you need anything more than a single file, use lua modules and require them from your main steps file (that means we don't need luafilesystem)
+cucumber-lua expects you to define a single file for step definitions (features/step_definitions/steps.lua). If you need anything more than a single file, use lua modules and require them from your main steps file (that means we don't need luafilesystem).
+
+Create your step definitions using the following global keywords:
+
+* `Before(fn)` - called before each scenario
+* `After(fn)` - called after each scenario
+* `Given(step, fn)` - define a step where a pre-condition/state is declared
+* `When(step, fn)` - define a step where user action or behaviour is performed
+* `Then(step, fn)` - define a step where the outcome is observed
+* `Pending(message)` - indicate a step as pending implementation
+
+Note: If a `Before` or `After` function fails the whole scenario is reported as failed.
 
 ###### /features/step_definitions/steps.lua
 
@@ -66,6 +77,10 @@ Calculator = require("calculator")
 
 Before(function()
     Calculator:Reset()
+end)
+
+After(function()
+    print("I am called after each scenario")
 end)
 
 Given("I have entered (%d+) into the calculator", function (number)
