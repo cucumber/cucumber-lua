@@ -17,6 +17,7 @@ Please visit [cucumber/CONTRIBUTING.md](https://github.com/cucumber/cucumber/blo
 ### Added
 
 * Added this CHANGELOG.md file per [cucumber/cucumber #251](https://github.com/cucumber/cucumber/issues/251) ([#6](https://github.com/cucumber/cucumber-lua/pull/6) [jaysonesmith](https://github.com/jaysonesmith))
+* Feature/end scenario hook [#3](https://github.com/cucumber/cucumber-lua/pull/3)
 
 ### Changed
 
