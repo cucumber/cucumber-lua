@@ -35,7 +35,7 @@ function CucumberLua:begin_scenario(args)
 end
   
 function CucumberLua:invoke(args)
-  func = self.step_definitions[args["id"]]
+  local func = self.step_definitions[args["id"]]
   local ok, err = pcall(func, (unpack or table.unpack)(args["args"]))
   if ok then
     return { "success" }
@@ -59,8 +59,8 @@ end
 
 function CucumberLua:FindArgs(str, pattern)
   local patternWithPositions = string.gsub(pattern, "%(", "()(")
-  matches = {string.find(str, patternWithPositions)}
-  args = {}
+  local matches = {string.find(str, patternWithPositions)}
+  local args = {}
   for i = 3, #matches, 2 do
     table.insert(args, {
       ["pos"] = matches[i] - 1,
